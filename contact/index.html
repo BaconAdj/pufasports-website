@@ -11,215 +11,83 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --red:    #D42B2B;
-      --yellow: #F5C200;
-      --blue:   #1A4FBB;
-      --black:  #0a0a0a;
-      --white:  #ffffff;
-      --grey2:  #888899;
-      --ff-display: 'Bebas Neue', sans-serif;
-      --ff-body:    'Outfit', sans-serif;
+      --red: #D42B2B; --yellow: #F5C200; --blue: #1A4FBB;
+      --black: #0a0a0a; --white: #ffffff; --grey2: #888899;
+      --ff-display: 'Bebas Neue', sans-serif; --ff-body: 'Outfit', sans-serif;
     }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--ff-body);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { background: var(--black); color: var(--white); font-family: var(--ff-body); min-height: 100vh; overflow-x: hidden; }
     body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 15% 40%, rgba(212,43,43,0.1) 0%, transparent 60%),
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 15% 40%, rgba(212,43,43,0.1) 0%, transparent 60%),
         radial-gradient(ellipse 60% 50% at 85% 60%, rgba(26,79,187,0.1) 0%, transparent 60%),
         radial-gradient(ellipse 40% 40% at 50% 100%, rgba(245,194,0,0.06) 0%, transparent 50%);
       pointer-events: none;
     }
-
-    /* ── Nav ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 14px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(20px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 14px 40px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 42px; width: auto; display: block; mix-blend-mode: lighten; border-radius: 50%; }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-socials { display: flex; align-items: center; gap: 14px; }
-    .nav-social-link {
-      color: rgba(255,255,255,0.4); display: flex; align-items: center;
-      transition: color 0.2s; text-decoration: none;
-    }
+    .nav-social-link { color: rgba(255,255,255,0.4); display: flex; align-items: center; transition: color 0.2s; text-decoration: none; }
     .nav-social-link:hover { color: var(--white); }
-    .nav-back {
-      font-size: 13px; font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 6px;
-      transition: color 0.2s;
-    }
+    .lang-toggle { display: flex; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden; }
+    .lang-btn { padding: 6px 10px; cursor: pointer; color: rgba(255,255,255,0.4); background: transparent; border: none; font-family: var(--ff-body); font-size: 12px; font-weight: 700; letter-spacing: 0.5px; transition: all 0.2s; }
+    .lang-btn.active { background: var(--white); color: var(--black); }
+    .lang-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
+    .nav-back { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
     .nav-back:hover { color: var(--white); }
-
-    /* ── Stripe ── */
     .stripe { position: fixed; top: 0; left: 0; right: 0; height: 3px; display: flex; z-index: 101; }
     .stripe div { flex: 1; }
-
-    /* ── Main ── */
-    main {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
-      position: relative;
-    }
-
-    .contact-wrap {
-      width: 100%;
-      max-width: 640px;
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-    }
-
-    /* ── Header ── */
+    main { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 80px; position: relative; }
+    .contact-wrap { width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 48px; }
     .contact-header { text-align: center; }
-    .contact-eyebrow {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--grey2); margin-bottom: 16px;
-    }
-    .contact-title {
-      font-family: var(--ff-display);
-      font-size: clamp(64px, 12vw, 112px);
-      line-height: 0.92; letter-spacing: 3px;
-    }
-    .contact-title .red    { color: var(--red); }
-    .contact-title .yellow { color: var(--yellow); }
-    .contact-sub {
-      font-size: 17px; color: rgba(255,255,255,0.45);
-      line-height: 1.7; margin-top: 16px;
-    }
-
-    /* ── Cards ── */
-    .contact-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 24px 28px;
-      border-radius: 16px;
-      border: 1.5px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      text-decoration: none;
-      color: var(--white);
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .contact-card:hover {
-      border-color: rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
-      transform: translateX(4px);
-    }
+    .contact-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--grey2); margin-bottom: 16px; }
+    .contact-title { font-family: var(--ff-display); font-size: clamp(64px, 12vw, 112px); line-height: 0.92; letter-spacing: 3px; }
+    .contact-title .red { color: var(--red); } .contact-title .yellow { color: var(--yellow); }
+    .contact-sub { font-size: 17px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-top: 16px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
+    .contact-card { display: flex; align-items: center; gap: 20px; padding: 24px 28px; border-radius: 16px; border: 1.5px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); text-decoration: none; color: var(--white); transition: all 0.25s; position: relative; overflow: hidden; }
+    .contact-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; opacity: 0; transition: opacity 0.25s; }
+    .contact-card:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); transform: translateX(4px); }
     .contact-card:hover::before { opacity: 1; }
-
     .contact-card.instagram::before { background: linear-gradient(to bottom, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .contact-card.tiktok::before    { background: var(--white); }
-    .contact-card.twitter::before   { background: var(--white); }
-    .contact-card.email::before     { background: var(--yellow); }
-
-    .card-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 22px;
-    }
-
+    .contact-card.tiktok::before { background: var(--white); }
+    .contact-card.twitter::before { background: var(--white); }
+    .contact-card.email::before { background: var(--yellow); }
+    .card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .card-icon.instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-    .card-icon.tiktok    { background: #010101; border: 1px solid rgba(255,255,255,0.12); }
-    .card-icon.twitter   { background: #000000; border: 1px solid rgba(255,255,255,0.12); }
-    .card-icon.email     { background: rgba(245,194,0,0.15); border: 1px solid rgba(245,194,0,0.2); }
-
+    .card-icon.tiktok { background: #010101; border: 1px solid rgba(255,255,255,0.12); }
+    .card-icon.twitter { background: #000000; border: 1px solid rgba(255,255,255,0.12); }
+    .card-icon.email { background: rgba(245,194,0,0.15); border: 1px solid rgba(245,194,0,0.2); }
     .card-info { flex: 1; }
     .card-title { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
     .card-handle { font-size: 13px; color: rgba(255,255,255,0.4); }
-
-    .card-arrow {
-      font-size: 18px;
-      color: rgba(255,255,255,0.2);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .contact-card:hover .card-arrow {
-      color: rgba(255,255,255,0.6);
-      transform: translateX(3px);
-    }
-
-    /* ── Divider ── */
-    .divider {
-      display: flex; align-items: center; gap: 16px;
-      color: rgba(255,255,255,0.15);
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1;
-      height: 1px; background: rgba(255,255,255,0.08);
-    }
-
-    /* ── Footer bar ── */
-    .page-footer {
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-      padding-bottom: 8px;
-    }
-
+    .card-arrow { font-size: 18px; color: rgba(255,255,255,0.2); transition: color 0.2s, transform 0.2s; }
+    .contact-card:hover .card-arrow { color: rgba(255,255,255,0.6); transform: translateX(3px); }
+    .divider { display: flex; align-items: center; gap: 16px; color: rgba(255,255,255,0.15); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .page-footer { text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); padding-bottom: 8px; }
     .tribar { display: inline-flex; gap: 4px; margin-bottom: 10px; }
     .tribar span { width: 14px; height: 4px; border-radius: 2px; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .contact-header { animation: fadeUp 0.6s ease both; }
-    .contact-cards  { animation: fadeUp 0.6s 0.1s ease both; }
-    .page-footer    { animation: fadeUp 0.6s 0.2s ease both; }
-
+    .contact-cards { animation: fadeUp 0.6s 0.1s ease both; }
+    .page-footer { animation: fadeUp 0.6s 0.2s ease both; }
     @media (max-width: 600px) {
       nav { padding: 12px 20px; }
       .nav-socials { display: none; }
       .contact-card { padding: 20px; }
-      .card-icon { width: 44px; height: 44px; border-radius: 10px; font-size: 18px; }
+      .card-icon { width: 44px; height: 44px; border-radius: 10px; }
     }
   </style>
 </head>
 <body>
-
   <div class="stripe">
     <div style="background:var(--red)"></div>
     <div style="background:var(--yellow)"></div>
@@ -227,9 +95,7 @@
   </div>
 
   <nav>
-    <a href="/" class="nav-logo">
-      <img src="/logo.png" alt="PUFA" />
-    </a>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="PUFA" /></a>
     <div class="nav-right">
       <div class="nav-socials">
         <a href="https://www.instagram.com/pufasports/" target="_blank" class="nav-social-link" title="Instagram">
@@ -242,24 +108,28 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.857L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
         </a>
       </div>
-      <a href="/" class="nav-back">← Back to Home</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <div class="lang-divider"></div>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      </div>
+      <a href="/" class="nav-back" data-i18n="nav.back">← Back to Home</a>
     </div>
   </nav>
 
   <main>
     <div class="contact-wrap">
-
       <div class="contact-header">
-        <p class="contact-eyebrow">Get In Touch</p>
+        <p class="contact-eyebrow" data-i18n="contact.eyebrow">Get In Touch</p>
         <h1 class="contact-title">
-          LET'S<br/><span class="red">TALK</span><br/><span class="yellow">SPORT</span>
+          <span data-i18n="contact.line1">LET'S</span><br/>
+          <span class="red" data-i18n="contact.line2">TALK</span><br/>
+          <span class="yellow" data-i18n="contact.line3">SPORT</span>
         </h1>
-        <p class="contact-sub">Follow us for updates, highlights, and community news — or reach out directly.</p>
+        <p class="contact-sub" data-i18n="contact.sub">Follow us for updates, highlights, and community news — or reach out directly.</p>
       </div>
 
       <div class="contact-cards">
-
-        <!-- Instagram -->
         <a href="https://www.instagram.com/pufasports/" target="_blank" class="contact-card instagram">
           <div class="card-icon instagram">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -271,7 +141,6 @@
           <div class="card-arrow">→</div>
         </a>
 
-        <!-- TikTok -->
         <a href="https://www.tiktok.com/@pufasports" target="_blank" class="contact-card tiktok">
           <div class="card-icon tiktok">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
@@ -283,7 +152,6 @@
           <div class="card-arrow">→</div>
         </a>
 
-        <!-- X / Twitter -->
         <a href="https://x.com/PUFASports" target="_blank" class="contact-card twitter">
           <div class="card-icon twitter">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.857L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
@@ -295,20 +163,18 @@
           <div class="card-arrow">→</div>
         </a>
 
-        <div class="divider">or</div>
+        <div class="divider" data-i18n="contact.or">or</div>
 
-        <!-- Email -->
         <a href="mailto:admin@pufasports.com" class="contact-card email">
           <div class="card-icon email">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5C200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div class="card-info">
-            <div class="card-title">Email Us</div>
+            <div class="card-title" data-i18n="contact.emailTitle">Email Us</div>
             <div class="card-handle">admin@pufasports.com</div>
           </div>
           <div class="card-arrow">→</div>
         </a>
-
       </div>
 
       <div class="page-footer">
@@ -317,11 +183,59 @@
           <span style="background:var(--yellow)"></span>
           <span style="background:var(--blue)"></span>
         </div>
-        <div>© 2025 PUFA Sports Inc. · Montréal, Québec 🇨🇦</div>
+        <div data-i18n="footer.copy">© 2025 PUFA Sports Inc. · Montréal, Québec 🇨🇦</div>
       </div>
-
     </div>
   </main>
 
+  <script>
+  const translations = {
+    en: {
+      "nav.back": "← Back to Home",
+      "contact.eyebrow": "Get In Touch",
+      "contact.line1": "LET'S",
+      "contact.line2": "TALK",
+      "contact.line3": "SPORT",
+      "contact.sub": "Follow us for updates, highlights, and community news — or reach out directly.",
+      "contact.or": "or",
+      "contact.emailTitle": "Email Us",
+      "footer.copy": "© 2025 PUFA Sports Inc. · Montréal, Québec 🇨🇦"
+    },
+    fr: {
+      "nav.back": "← Retour à l'accueil",
+      "contact.eyebrow": "Contactez-nous",
+      "contact.line1": "PARLONS",
+      "contact.line2": "SPORT",
+      "contact.line3": "ENSEMBLE",
+      "contact.sub": "Suivez-nous pour les mises à jour, les faits saillants et les nouvelles de la communauté — ou écrivez-nous directement.",
+      "contact.or": "ou",
+      "contact.emailTitle": "Écrivez-nous",
+      "footer.copy": "© 2025 PUFA Sports Inc. · Montréal, Québec 🇨🇦"
+    }
+  }
+
+  let currentLang = localStorage.getItem('pufa-lang') || 'en'
+
+  function setLang(lang) {
+    currentLang = lang
+    localStorage.setItem('pufa-lang', lang)
+    document.documentElement.lang = lang
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang)
+    })
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n')
+      if (translations[lang][key] !== undefined) el.textContent = translations[lang][key]
+    })
+
+    document.title = lang === 'fr'
+      ? 'Contact — PUFA Sports'
+      : 'Contact — PUFA Sports'
+  }
+
+  setLang(currentLang)
+  </script>
 </body>
 </html>
