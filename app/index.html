@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>PUFA — Play Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #D42B2B; --yellow: #F5C200; --blue: #1A4FBB;
+      --black: #0a0a0a; --white: #ffffff;
+      --ff-display: 'Bebas Neue', sans-serif;
+      --ff-body: 'Outfit', sans-serif;
+    }
+    body {
+      background: var(--black); color: var(--white);
+      font-family: var(--ff-body); min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px 24px;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 60%, rgba(212,43,43,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(26,79,187,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .stripe { position: fixed; top: 0; left: 0; right: 0; height: 3px; display: flex; z-index: 10; }
+    .stripe div { flex: 1; }
+    .logo-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; margin-bottom: 36px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .logo-wrap img { height: 80px; width: auto; mix-blend-mode: screen; }
+    .logo-sub {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+    }
+    .app-frame-wrap {
+      position: relative; animation: fadeUp 0.6s 0.15s ease both;
+      width: 100%; max-width: 420px;
+    }
+    .app-frame {
+      width: 100%; max-width: 420px;
+      height: 85vh; max-height: 860px;
+      border-radius: 36px; overflow: hidden;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(212,43,43,0.08);
+      background: #111; position: relative;
+    }
+    .app-frame::before {
+      content: ''; position: absolute; top: 14px; left: 50%;
+      transform: translateX(-50%); width: 100px; height: 6px;
+      background: rgba(255,255,255,0.08); border-radius: 3px;
+      z-index: 10; pointer-events: none;
+    }
+    .app-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+    .app-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; background: #111; border-radius: 36px;
+      z-index: 5; transition: opacity 0.5s;
+    }
+    .app-loading.hidden { opacity: 0; pointer-events: none; }
+    .loading-dots { display: flex; gap: 6px; }
+    .loading-dots span {
+      width: 7px; height: 7px; border-radius: 50%;
+      animation: dotPulse 1.2s ease infinite;
+    }
+    .loading-dots span:nth-child(1) { background: var(--red);    animation-delay: 0s; }
+    .loading-dots span:nth-child(2) { background: var(--yellow); animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { background: var(--blue);   animation-delay: 0.4s; }
+    .loading-text {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+    }
+    .fullscreen-btn {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 20px; padding: 12px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 10px; color: rgba(255,255,255,0.5);
+      font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .fullscreen-btn:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+    .back-link {
+      position: fixed; top: 24px; left: 24px;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.35); text-decoration: none;
+      transition: color 0.2s; z-index: 20;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.75); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(0.7); opacity: 0.4; }
+      50%       { transform: scale(1.2); opacity: 1; }
+    }
+    @media (max-width: 500px) {
+      .logo-wrap, .fullscreen-btn, .back-link { display: none; }
+      body { padding: 0; background: #111; }
+      body::before { display: none; }
+      .stripe { display: none; }
+      .app-frame-wrap { max-width: 100%; }
+      .app-frame { border-radius: 0; border: none; height: 100vh; max-height: none; box-shadow: none; }
+      .app-frame::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stripe">
+    <div style="background:var(--red)"></div>
+    <div style="background:var(--yellow)"></div>
+    <div style="background:var(--blue)"></div>
+  </div>
+  <a href="/" class="back-link">← pufasports.com</a>
+  <div class="logo-wrap">
+    <img src="/logo.png" alt="PUFA" />
+    <div class="logo-sub">People's Universal Free Athletics</div>
+  </div>
+  <div class="app-frame-wrap">
+    <div class="app-frame">
+      <div class="app-loading" id="loader">
+        <div class="loading-dots"><span></span><span></span><span></span></div>
+        <div class="loading-text">Loading PUFA</div>
+      </div>
+      <iframe
+        id="appFrame"
+        src="https://pufa-app-baconadj.vercel.app"
+        allow="geolocation; camera"
+        title="PUFA App"
+        onload="document.getElementById('loader').classList.add('hidden')"
+      ></iframe>
+    </div>
+  </div>
+  <a href="https://pufa-app-baconadj.vercel.app" target="_blank" class="fullscreen-btn">↗ Open Full Screen</a>
+  <script>
+    setTimeout(() => { document.getElementById('loader')?.classList.add('hidden') }, 8000)
+  </script>
+</body>
+</html>
