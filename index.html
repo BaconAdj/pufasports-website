@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PUFA Sports — People's Universal Free Athletics</title>
   <meta name="description" content="PUFA connects athletes everywhere for free pick-up games, leagues, and tournaments. Find your game, track your ranking, play more." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:image" content="https://www.pufasports.com/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --red: #D42B2B; --yellow: #F5C200; --blue: #1A4FBB;
+      --red: #E8302F; --yellow: #F5C200; --blue: #2D5BFF;
       --black: #0a0a0a; --white: #ffffff;
       --grey0: #f5f5f7; --grey1: #e0e0e8; --grey2: #888899;
       --ff-display: 'Bebas Neue', sans-serif;
@@ -31,7 +34,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 42px; width: auto; display: block; border-radius: 50%; mix-blend-mode: lighten; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
     .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
@@ -77,7 +80,7 @@
     }
     .hero-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; display: flex; }
     .hero-stripe div { flex: 1; }
-    .hero-logo { width: clamp(140px, 22vw, 220px); height: auto; margin-bottom: 32px; animation: fadeUp 0.7s ease both; mix-blend-mode: lighten; border-radius: 50%; }
+    .hero-logo { width: clamp(200px, 26vw, 320px); height: auto; margin-bottom: 36px; animation: fadeUp 0.7s ease both; }
     .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--grey2); margin-bottom: 20px; animation: fadeUp 0.7s 0.1s ease both; }
     .hero-title { font-family: var(--ff-display); font-size: clamp(68px, 13vw, 152px); line-height: 0.92; letter-spacing: 4px; color: var(--white); animation: fadeUp 0.7s 0.15s ease both; }
     .hero-title .accent-red { color: var(--red); }
@@ -161,14 +164,14 @@
     .cta-banner { margin: 0 40px 100px; border-radius: 24px; background: var(--white); color: var(--black); padding: 80px 64px; display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; overflow: hidden; }
     .cta-banner::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--red) 33%, var(--yellow) 66%, var(--blue) 100%); }
     .cta-banner-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 40% 80% at 90% 50%, rgba(212,43,43,0.06) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 10% 50%, rgba(26,79,187,0.06) 0%, transparent 70%); pointer-events: none; }
-    .cta-logo { height: 90px; width: auto; margin-bottom: 16px; display: block; mix-blend-mode: multiply; border-radius: 50%; }
+    .cta-logo { height: 52px; width: auto; margin-bottom: 20px; display: block; }
     .cta-title { font-family: var(--ff-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: 2px; line-height: 1; color: var(--black); }
     .cta-sub { font-size: 16px; color: rgba(0,0,0,0.5); margin-top: 10px; max-width: 380px; }
     .btn-dark { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; background: var(--black); color: var(--white); font-family: var(--ff-body); font-size: 16px; font-weight: 700; border-radius: 12px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
     footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 56px 40px 40px; }
     .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; margin-bottom: 48px; }
-    .footer-brand img { height: 56px; width: auto; margin-bottom: 14px; display: block; mix-blend-mode: lighten; border-radius: 50%; }
+    .footer-brand img { height: 36px; width: auto; margin-bottom: 16px; display: block; }
     .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.7; max-width: 260px; }
     .footer-social { display: flex; gap: 12px; margin-top: 20px; }
     .social-link { width: 40px; height: 40px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,0.4); font-size: 17px; transition: all 0.2s; background: rgba(255,255,255,0.04); }
@@ -195,7 +198,7 @@
       .rankings-section { grid-template-columns: 1fr; padding: 36px 24px; gap: 40px; }
       .audience-grid { grid-template-columns: 1fr; }
       .cta-banner { flex-direction: column; margin: 0 20px 72px; padding: 48px 32px; }
-      .cta-logo { height: 70px; }
+      .cta-logo { height: 42px; }
       footer { padding: 48px 20px 32px; }
       .footer-top { flex-direction: column; gap: 40px; }
       .footer-nav { flex-direction: column; gap: 32px; }
@@ -209,7 +212,7 @@
 </head>
 <body>
   <nav>
-    <a href="/" class="nav-logo"><img src="/logo.png" alt="PUFA" /></a>
+    <a href="/" class="nav-logo"><img src="/logo.svg" alt="PUFA" /></a>
     <ul class="nav-links">
       <li><a href="#mission" data-i18n="nav.mission">Mission</a></li>
       <li><a href="#features" data-i18n="nav.features">Features</a></li>
@@ -244,7 +247,7 @@
       <div style="background:var(--yellow)"></div>
       <div style="background:var(--blue)"></div>
     </div>
-    <img src="/logo.png" alt="PUFA" class="hero-logo" />
+    <img src="/logo.svg" alt="PUFA" class="hero-logo" />
     <p class="hero-eyebrow" data-i18n="hero.eyebrow">People's Universal Free Athletics</p>
     <h1 class="hero-title">
       <span data-i18n="hero.line1">EVERY</span><br/>
@@ -426,7 +429,7 @@
   <div class="cta-banner">
     <div class="cta-banner-bg"></div>
     <div>
-      <img src="/logo.png" alt="PUFA" class="cta-logo" />
+      <img src="/logo-dark.svg" alt="PUFA" class="cta-logo" />
       <div class="cta-title" data-i18n-html="cta.title">READY TO<br/>PLAY?</div>
       <div class="cta-sub" data-i18n="cta.sub">Find a game near you today. Free forever — for every athlete, everywhere.</div>
     </div>
@@ -436,7 +439,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="/logo.png" alt="PUFA" />
+        <img src="/logo.svg" alt="PUFA" />
         <p data-i18n="footer.tagline">People's Universal Free Athletics. Connecting athletes to the games they love — free, ranked, and always nearby.</p>
         <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:20px;margin-bottom:0;" data-i18n="footer.follow">Follow Us</p>
         <div class="footer-social">

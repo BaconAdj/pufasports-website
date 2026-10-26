@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2.17 -0.33 95.65 95.65" width="64" height="64"><defs>
+<mask id="my"><rect x="-10" y="-10" width="120" height="120" fill="#fff"/><circle cx="31" cy="64" r="27.5"/><circle cx="69" cy="64" r="27.5"/></mask>
+<mask id="mr"><rect x="-10" y="-10" width="120" height="120" fill="#fff"/><circle cx="69" cy="64" r="27.5"/></mask>
+</defs>
+<circle cx="50" cy="31" r="25" fill="#F5C200" mask="url(#my)"/>
+<circle cx="31" cy="64" r="25" fill="#E8302F" mask="url(#mr)"/>
+<circle cx="69" cy="64" r="25" fill="#2D5BFF"/></svg>
